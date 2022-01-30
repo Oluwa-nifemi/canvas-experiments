@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 - Canvas Rendering Fundamentals</title>
+
+    <style>
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 1.5em;
+        margin-bottom: 1em;
+      }
+
+      #go-back {
+        position: fixed;
+        top: 1em;
+        left: 1em;
+      }
+
+      #canvas {
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+    </style>
+
+</head>
+<body>
+
+<a id="go-back" href="/">Go Back</a>
+
+<div id="container">
+    <h1>02 - Canvas Rendering Fundamentals</h1>
+    <canvas id="canvas"></canvas>
+</div>
+
+<script>
+
+  // ------- Initialization -------
+  const CANVAS_WIDTH = 512
+  const CANVAS_HEIGHT = 512
+
+  const canvas = document.getElementById('canvas')
+
+  const dpr = devicePixelRatio
+  canvas.width = CANVAS_WIDTH * devicePixelRatio
+  canvas.height = CANVAS_HEIGHT * devicePixelRatio
+
+  canvas.style.setProperty('width', CANVAS_WIDTH + 'px')
+  canvas.style.setProperty('height', CANVAS_HEIGHT + 'px')
+
+  const ctx = canvas.getContext('2d')
+
+  const image = new Image()
+
+  //This variable keeps track of if one of the image or video have been loaded
+  let oneIsLoaded = false;
+
+  image.onload = () => {
+    if(oneIsLoaded){
+      requestAnimationFrame(drawFrame)
+    }else{
+      oneIsLoaded = true;
+    }
+  }
+
+  image.src = 'https://picsum.photos/200/300'
+
+  const video = document.createElement('video')
+
+  video.onloadeddata = () => {
+    video.play()
+    if(oneIsLoaded){
+      requestAnimationFrame(drawFrame)
+    }else{
+      oneIsLoaded = true;
+    }
+  }
+
+  video.src = './assets/sample-video.mp4'
+
+  // ------- Render Loop -------
+  function drawFrame(ts) {
+    ts /= 1000
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+
+    //Gradient and Rect
+    const gradient = ctx.createLinearGradient(100, 100, 150, 100);
+    gradient.addColorStop(0, 'red')
+    gradient.addColorStop(1, 'green')
+
+    ctx.fillStyle = gradient
+    ctx.strokeStyle = 'blue'
+    ctx.lineWidth = 5
+    ctx.fillRect(100, 100, 50, 50)
+    ctx.strokeRect(100, 100, 50, 50)
+
+    //Circle
+    const circleX = 125;
+    const circleY = 250;
+    const circleRadius = 50;
+    const startAngle = 0;
+    const fullCircle = Math.PI * 2
+    const endAngle = Math.min(((ts % 5) / 5) * fullCircle, fullCircle); //Draw full circle over 5 seconds
+
+    ctx.beginPath()
+    ctx.arc(circleX, circleY, circleRadius, startAngle, endAngle)
+    ctx.fillStyle = 'orange'
+    ctx.fill()
+    ctx.closePath()
+
+    //Line
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'teal'
+
+    ctx.beginPath()
+    const start = [200, 100]
+    ctx.moveTo(...start)
+    ctx.lineTo(start[0] + 50, start[1])
+    ctx.lineTo(start[0] + 50, start[1] + 60)
+    ctx.stroke()
+
+    ctx.closePath()
+
+
+    //Beizer curve
+    ctx.beginPath()
+
+    const beizerStart = [300, 200];
+    const cp1x = beizerStart[0] + 50
+    const cp1y = beizerStart[1] - 50
+    const cp2x = beizerStart[0] + 100
+    const cp2y = beizerStart[1] + 50
+
+    ctx.moveTo(300, 200)
+    ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, beizerStart[0] + 150, beizerStart[1])
+    ctx.stroke()
+    ctx.closePath()
+
+    //Text
+    ctx.font = '3rem monospace'
+    ctx.fillText('Hello World', 300, 400, 100)
+
+    //Image
+    ctx.drawImage(image, 300, 400, image.naturalWidth / 2, image.naturalHeight / 2)
+
+    //Video
+    // ctx.drawImage(video, 100, 300)
+
+    requestAnimationFrame(drawFrame)
+  }
+
+</script>
+
+</body>
+</html>
