@@ -1,78 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamically scripted animations with Javascript</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-      line-height: 1.8;
-      padding-bottom: 4rem;
-    }
-    .container {
-      max-width: 920px;
-      margin: 0 auto;
-    }
-    code {
-      font-size: 1.1rem;
-      padding: 0 5px;
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-    }
-    ol {
-      counter-reset: item;
-    }
-    li {
-      display: block;
-      list-style-type: decimal-leading-zero;
-    }
-    li:before {
-      content: counters(item, ".") ". ";
-      counter-increment: item
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamically scripted animations with Javascript</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        line-height: 1.8;
+        padding-bottom: 4rem;
+      }
+
+      .container {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+
+      code {
+        font-size: 1.1rem;
+        padding: 0 5px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+
+      ol {
+        counter-reset: item;
+      }
+
+      li {
+        display: block;
+        list-style-type: decimal-leading-zero;
+      }
+
+      li:before {
+        content: counters(item, ".") ". ";
+        counter-increment: item
+      }
+    </style>
 </head>
 <body>
-  <div class="container">
+<div class="container">
     <h5>This page contains all the samples, excercises, and demo code from</h5>
     <h1>Dynamically scripted animations with Javascript</h1>
 
     <a href="https://www.awwwards.com/academy/course/dynamically-scripted-animations-with-javascript">
-      Full AWWWARDS Course
+        Full AWWWARDS Course
     </a>
-    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="https://discord.gg/r6GfSPdk ">
+        Discord Server
+    </a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
     <a href="https://github.com/gnikoloff/js-animation-awwwards-course">
-      GitHub Repository
+        GitHub Repository
     </a>
 
     <p>
-      In a world full of Javascript libraries, this course will be of great use for people who want to understand it on a deeper level. These animation principles are timeless and can be applied to any environment, such as HTML, SVG or even 3D with WebGL.
+        In a world full of Javascript libraries, this course will be of great use for people who want to understand it
+        on a deeper level. These animation principles are timeless and can be applied to any environment, such as HTML,
+        SVG or even 3D with WebGL.
     </p>
 
-    <hr />
+    <hr/>
 
     <h2>Table of Contents and Exercises</h2>
     <p>
-      The source code for each excercise is <a href="https://github.com/gnikoloff/js-animation-awwwards-course">available online</a>, and for a detailed explanation, please consult the video course.
+        The source code for each excercise is <a href="https://github.com/gnikoloff/js-animation-awwwards-course">available
+        online</a>, and for a detailed explanation, please consult the video course.
     </p>
 
     <ol>
-      <li>
-        Fundamentals
-        <ol>
-          <li>
-            <a class="exercise-link" href="01-app-boilerplate.html">Our basic HTML5 <code>canvas</code> skeleton app</a>
-          </li>
-            <li>
-                <a class="exercise-link" href="02-canvas-rendering-fundamentals.html"><code>canvas</code> rendering fundamentals</a>
-            </li>
-        </ol>
-      </li>
+        <li>
+            Fundamentals
+            <ol>
+                <li>
+                    <a class="exercise-link" href="01-app-boilerplate.html">Our basic HTML5 <code>canvas</code> skeleton
+                        app</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="02-canvas-rendering-fundamentals.html">HTML5 <code>canvas</code>
+                        rendering fundamentals</a>
+                </li>
+            </ol>
+        </li>
+        <li>
+            Basic Trigonometry
+            <ol>
+                <li>
+                    <a class="exercise-link" href="03-pulsing-motion-with-sin.html">Create a pulsing motion with <code>Math.sin()</code></a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="04-circular-motion.html">Circular movement</code></a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="05-wave-motion-using-two-angles.html">Wave motion using two
+                        angles</code></a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="06-rotate-an-object-towards-a-point.html">Rotate an object towards a
+                        point</code></a>
+                </li>
+            </ol>
+        </li>
+        <li>
+            Velocity and Acceleration
+            <ol>
+                <li>
+                    <a class="exercise-link" href="07-velocity-on-two-axes.html">Simple velocity on two axes</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="08-angular-velocity.html">Angular velocity</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="09-angular-velocity-follow-the-mouse.html">Using angular velocity to
+                        follow the mouse</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="10-acceleration-and-gravity.html">Acceleration and gravity</a>
+                </li>
+            </ol>
+        </li>
+        <li>
+            Boundaries and friction
+            <ol>
+                <li>
+                    <a class="exercise-link" href="11-screen-wrapping.html">Screen wrapping</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="12-removing-objects-at-boundaries.html">Removing objects at
+                        boundaries</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="13-fountain-of-regenerating-objects.html">Fountain of regenerating
+                        objects</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="14-bouncing-off-walls.html">Bouncing off walls</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="15-friction.html">Friction</a>
+                </li>
+            </ol>
+        </li>
+        <li>
+            Easing and springing
+            <ol>
+                <li>
+                    <a class="exercise-link" href="16-simple-easing.html">Simple easing</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="16.1-alternative-simple-easing.html">Simple easing alternative
+                        (Dicord question @youse_jp)</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="17-ease-to-moving-target.html">Ease to moving target</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="18-springing-with-friction.html">Springing with friction</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="19-springing-to-moving-target.html">Springing to a moving target</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="20-multiple-interactive-springs.html">Multiple interactive springs
+                        following the mouse</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="21-chaining-springs.html">Chaining springs</a>
+                </li>
+            </ol>
+        </li>
+        <li>
+            Collision detection
+            <ol>
+                <li>
+                    <a class="exercise-link" href="22-hit-testing-with-bounding-box.html">Hit testing with bounding
+                        box</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="23-distance-based-hit-testing.html">Distance based hit testing</a>
+                </li>
+                <li>
+                    <a class="exercise-link" href="24-stacking-boxes.html">Stacking boxes</a>
+                </li>
+            </ol>
+        </li>
     </ol>
 
-  </div>
+</div>
 
 </body>
 </html>
