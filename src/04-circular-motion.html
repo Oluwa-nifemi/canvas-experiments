@@ -86,6 +86,7 @@
 
     const circleX = canvas.width / 2;
     const circleY = canvas.height / 2;
+    //Oscillate circle radius based on current time
     const circleRadius = 200 + Math.sin(ts * 5) * 20;
     const counterClockwise = false;
     const startAngle = 0;
@@ -97,19 +98,25 @@
     ctx.stroke()
     ctx.closePath()
 
-    const numCircles = 20;
+    //Change this to increase or decrease the number of circles
+    const NUMBER_OF_CIRCLES = 20;
 
-    Array.from({length: numCircles}).forEach((_, circle) => {
+    Array.from({length: NUMBER_OF_CIRCLES}).forEach((_, circle) => {
+      //Generate random color
       ctx.fillStyle = getRandomColor()
 
+      //Position of circles is based on current time. Increase or decrease multiplied time to increase speed of rotation
       let angle = ts * 4;
 
-      const ratio = (circle / numCircles) * Math.PI * 2;
+      //This ensures that the circles will take up different positions based on their index and they will all be equally distant from each other
+      const ratio = (circle / NUMBER_OF_CIRCLES) * Math.PI * 2;
 
-      let moveX = circleX - Math.cos(angle + ratio) * circleRadius
+      //Use cos to generate x position of radius in circle and sin to generate y based on circle rules https://www.mathsisfun.com/geometry/unit-circle.html
+      let moveX = circleX + Math.cos(angle + ratio) * circleRadius
       let moveY = circleY + Math.sin(angle + ratio) * circleRadius;
 
       ctx.beginPath()
+      //Math.cos oscillates the circle radius based on current time
       ctx.arc(moveX, moveY, 20 + Math.cos(ts * 2) * 10, startAngle, endAngle, counterClockwise)
       ctx.fill()
       ctx.closePath()
