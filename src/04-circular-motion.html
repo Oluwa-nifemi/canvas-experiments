@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 - Circular Motion</title>
+
+    <style>
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 1.5em;
+        margin-bottom: 1em;
+      }
+
+      #go-back {
+        position: fixed;
+        top: 1em;
+        left: 1em;
+      }
+
+      #canvas {
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+    </style>
+
+</head>
+<body>
+
+<a id="go-back" href="/">Go Back</a>
+
+<div id="container">
+    <h1>04 - Circular Motion</h1>
+    <canvas id="canvas"></canvas>
+</div>
+
+<script>
+
+  // ------- Initialization -------
+  const CANVAS_WIDTH = 512
+  const CANVAS_HEIGHT = 512
+
+  const canvas = document.getElementById('canvas')
+
+  const dpr = devicePixelRatio
+  canvas.width = CANVAS_WIDTH * devicePixelRatio
+  canvas.height = CANVAS_HEIGHT * devicePixelRatio
+
+  canvas.style.setProperty('width', CANVAS_WIDTH + 'px')
+  canvas.style.setProperty('height', CANVAS_HEIGHT + 'px')
+
+  const ctx = canvas.getContext('2d')
+
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  requestAnimationFrame(drawFrame)
+
+  // ------- Render Loop -------
+  function drawFrame(ts) {
+    ts /= 1000
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    const circleX = canvas.width / 2;
+    const circleY = canvas.height / 2;
+    const circleRadius = 200 + Math.sin(ts * 5) * 20;
+    const counterClockwise = false;
+    const startAngle = 0;
+    const endAngle = Math.PI * 2;
+
+    ctx.strokeStyle = 'blue';
+    ctx.beginPath()
+    ctx.arc(circleX, circleY, circleRadius, startAngle, endAngle, counterClockwise)
+    ctx.stroke()
+    ctx.closePath()
+
+    const numCircles = 20;
+
+    Array.from({length: numCircles}).forEach((_, circle) => {
+      ctx.fillStyle = getRandomColor()
+
+      let angle = ts * 4;
+
+      const ratio = (circle / numCircles) * Math.PI * 2;
+
+      let moveX = circleX - Math.cos(angle + ratio) * circleRadius
+      let moveY = circleY + Math.sin(angle + ratio) * circleRadius;
+
+      ctx.beginPath()
+      ctx.arc(moveX, moveY, 20 + Math.cos(ts * 2) * 10, startAngle, endAngle, counterClockwise)
+      ctx.fill()
+      ctx.closePath()
+    })
+
+    requestAnimationFrame(drawFrame)
+  }
+
+</script>
+
+</body>
+</html>
