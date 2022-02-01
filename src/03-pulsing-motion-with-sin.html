@@ -8,7 +8,10 @@
 
     <style>
 
-      * { margin: 0; padding: 0; }
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
       body {
         width: 100vw;
@@ -67,7 +70,7 @@
   requestAnimationFrame(drawFrame)
 
   // ------- Render Loop -------
-  function drawFrame (ts) {
+  function drawFrame(ts) {
     ts /= 1000
 
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -84,6 +87,17 @@
     ctx.arc(circleX, circleY, circleRadius, startAngle, endAngle, counterClockwise)
     ctx.stroke()
     ctx.closePath()
+
+
+    const pointY = (((Math.sin(ts) + 1) / 2) * canvas.height) - 10;
+
+    const time = 10
+    const pointX = (ts % time / time) * canvas.width;
+
+    ctx.fillStyle = 'black'
+    ctx.strokeStyle = 'blue'
+
+    ctx.fillRect(pointX, pointY, 10, 10);
 
     requestAnimationFrame(drawFrame)
   }
